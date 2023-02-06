@@ -68,7 +68,11 @@ PortPin L[4] =
 };
 
 //For Button Contenter
+uint16_t Cout[11] = {};
 uint16_t ButtonMatrix=0;
+uint16_t num =0;
+uint16_t Coutnum = 0;
+uint16_t Check = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,6 +81,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void ReadMatrixButton_1Row();
+void Number ();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -126,6 +131,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  //Call function every 10 ms = 100Hz
+
 	  static uint32_t timestamp=0;
 	  if(HAL_GetTick()>=timestamp)
 	  {
@@ -133,6 +139,27 @@ int main(void)
 		  ReadMatrixButton_1Row();
 
 	  }
+
+		  if(ButtonMatrix > 0 && Check == 0 )
+		  {
+			  Number();
+			  Coutnum +=1;
+		  }
+		  Check = ButtonMatrix ;
+
+		  if(ButtonMatrix == 4096)
+		  {
+			  register int a;
+			  for(a = 0 ; a<11; ++a)
+			  {
+				  Cout[a]= 0 ;
+			  }
+			  Coutnum =0 ;
+			  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin,GPIO_PIN_RESET );
+		  }
+
+
+
   }
   /* USER CODE END 3 */
 }
@@ -288,6 +315,68 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void Number ()
+{
+	if(ButtonMatrix == 1)
+	{
+		num = 7 ;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 2)
+	{
+		num = 4;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 4)
+	{
+		num = 1;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 8)
+	{
+		num = 0;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 16)
+	{
+		num = 8;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 32)
+	{
+		num = 5;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 64)
+	{
+		num = 2;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 256)
+	{
+		num = 9;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 512)
+	{
+		num = 6;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 1024)
+	{
+		num = 3;
+		Cout[Coutnum] = num ;
+	}
+	else if(ButtonMatrix == 32768)
+	{
+		if (Cout[0] == 6 && Cout[1] == 4 && Cout[2] == 3 && Cout[3] == 4 && Cout[4] == 0 && Cout[5] == 5 && Cout[6] ==0 && Cout[7] == 0 && Cout[8] == 0 && Cout[9] == 1 && Cout[10] == 5 )
+		{
+			HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin,GPIO_PIN_SET );
+		}
+	}
+
+
+}
 void ReadMatrixButton_1Row()
 {
 	//

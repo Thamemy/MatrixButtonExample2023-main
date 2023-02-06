@@ -60,8 +60,8 @@ all: main-build
 main-build: MatrixButton2.elf secondary-outputs
 
 # Tool invocations
-MatrixButton2.elf MatrixButton2.map: $(OBJS) $(USER_OBJS) C:\git\MatrixButtonExample2023\MatrixButton2\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "MatrixButton2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\git\MatrixButtonExample2023\MatrixButton2\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MatrixButton2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+MatrixButton2.elf MatrixButton2.map: $(OBJS) $(USER_OBJS) C:\Github\MatrixButtonExample2023-main\MatrixButton2\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "MatrixButton2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Github\MatrixButtonExample2023-main\MatrixButton2\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MatrixButton2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
