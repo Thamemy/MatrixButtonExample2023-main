@@ -147,7 +147,7 @@ int main(void)
 		  }
 		  Check = ButtonMatrix ;
 
-		  if(ButtonMatrix == 4096)
+		  if(ButtonMatrix == 8192)
 		  {
 			  register int a;
 			  for(a = 0 ; a<11; ++a)

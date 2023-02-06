@@ -432,10 +432,10 @@ int main(void)
  8000532:	4b0e      	ldr	r3, [pc, #56]	; (800056c <main+0x90>)
  8000534:	801a      	strh	r2, [r3, #0]
 
-		  if(ButtonMatrix == 4096)
+		  if(ButtonMatrix == 8192)
  8000536:	4b0c      	ldr	r3, [pc, #48]	; (8000568 <main+0x8c>)
  8000538:	881b      	ldrh	r3, [r3, #0]
- 800053a:	f5b3 5f80 	cmp.w	r3, #4096	; 0x1000
+ 800053a:	f5b3 5f00 	cmp.w	r3, #8192	; 0x2000
  800053e:	d1d7      	bne.n	80004f0 <main+0x14>
 		  {
 			  register int a;
